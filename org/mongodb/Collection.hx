@@ -9,10 +9,10 @@ class Collection
 		this.db = db;
 	}
 
-	public inline function find(?query:Dynamic, ?returnFields:Dynamic, skip:Int = 0, number:Int = 0):Cursor
+	public inline function find(?query:Dynamic, ?returnFields:Dynamic, skip:Int = 0, number:Int = 0):Cursor<Dynamic>
 	{
 		Protocol.query(fullname, query, returnFields, skip, number);
-		return new Cursor(fullname);
+		return new Cursor<Dynamic>(fullname);
 	}
 
 	public inline function findOne(?query:Dynamic, ?returnFields:Dynamic):Dynamic
@@ -41,10 +41,10 @@ class Collection
 	public inline function drop():Void { db.dropCollection(name); }
 	public inline function rename(to:String):Void { db.renameCollection(name, to); }
 
-	public function getIndexes():Cursor
+	public function getIndexes():Cursor<Dynamic>
 	{
 		Protocol.query(db.name + ".system.indexes", {ns: fullname});
-		return new Cursor(fullname);
+		return new Cursor<Dynamic>(fullname);
 	}
 
 	public function ensureIndex(keyPattern:Dynamic, ?options:Dynamic):Void

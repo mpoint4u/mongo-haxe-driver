@@ -2,14 +2,14 @@ package org.mongodb;
 
 import haxe.Int64;
 
-class Cursor
+class Cursor<T>
 {
 
 	public function new(collection:String)
 	{
 		this.collection = collection;
 		this.finished = false;
-		this.documents = new Array<Dynamic>();
+		this.documents = new Array();
 
 		checkResponse();
 	}
@@ -52,14 +52,14 @@ class Cursor
 		return false;
 	}
 
-	public function next():Dynamic
+	public function next():T
 	{
 		return documents.shift();
 	}
 
 	private var collection:String;
 	private var cursorId:Int64;
-	private var documents:Array<Dynamic>;
+	private var documents:Array<T>;
 	private var finished:Bool;
 
 }
