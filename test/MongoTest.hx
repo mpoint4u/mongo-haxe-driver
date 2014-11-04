@@ -80,6 +80,9 @@ class MongoTest extends TestCase
 		var mt = new MongoTest();
 		r.add(mt);
 
+		var qt = new QueryTest();
+		r.add(qt);
+
 		// flash workaround
 #if flash
 		var timer:Timer = new Timer(1000);
